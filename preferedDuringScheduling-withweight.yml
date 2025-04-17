@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata: 
-  name: example-pod-idside
+  name: example-pod-idside-weight
 spec:
   containers: 
-  - name: example-container-idside
+  - name: example-container-idside-weight
     image: nginx
   affinity:
     nodeAffinity:
@@ -15,4 +15,11 @@ spec:
           - key: topology.kubernetes.io/zone
             operator: In
             values:
-            - us-east-2b
+            - us-east-2c
+      - weight: 1  
+        preference:
+          matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-2a

@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Pod
 metadata: 
-  name: example-pod-rdside
+  name: example-pod-rdside-1
 spec:
   containers: 
-  - name: example-container-rdside
+  - name: example-container-rdside-1
     image: nginx
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: diskType
+          - key: topology.kubernetes.io/zone
             operator: In
             values:
-            - ssd
+            - us-east-2c
